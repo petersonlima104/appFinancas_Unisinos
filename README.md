@@ -1,2 +1,3 @@
-# appFinancas_Unisinos
-Aplicativo de finanças com tela de login, cadastro de login e postagem de comentários...
+# Projeto Unisinos - APP Finanças
+#### Cadeira Desenvolvimento para WEB
+#### Péterson Lima

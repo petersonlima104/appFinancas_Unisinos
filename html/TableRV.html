@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <title>Finance Share</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+</head>
+
+<body>
+
+    <div id="menu-container" class="menu-left">
+        <div class="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="menu-dropdown">
+            <a href="menuPage.html">Home</a>
+            <a href="TableRV.html">Indicadores sobre Renda Variável</a>
+            <a href="TableRF.html">Indicadores sobre Renda Fixa</a>
+            <a href="TableCR.html">Indicadores sobre Criptomoedas</a>
+        </div>
+    </div>
+
+    <button id="logout">Sair</button>
+    <h1>Finance Share</h1>
+    <section class="tabela">
+        <h2>Indicadores sobre Renda Variável</h2>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th class="titulo">Nome</th>
+                    <th class="titulo">Valor</th>
+                    <th class="titulo">Indice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ibovespa</td>
+                    <td>R$ 112.800,00</td>
+                    <td class="negative">- 38% &#x2193;</td>
+                </tr>
+                <tr>
+                    <td>MINI DOLAR</td>
+                    <td>R$ 5.013,50</td>
+                    <td class="positive">+ 0,23% &#x2191;</td>
+                </tr>
+                <tr>
+                    <td>Petobras</td>
+                    <td>R$ 27,40</td>
+                    <td class="positive">+ 0,77% &#x2191;</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="box-message">
+            <h1>Qual o assunto da sua mensagem?</h1>
+            <textarea id="assuntoMensagem"
+                placeholder="Digite apenas uma palavra conforme exemplo (ex.: '#investimeto')" rows="2"
+                cols="45"></textarea>
+            <br>
+            <h1>Comente aqui sobre seus investimentos</h1>
+            <textarea id="mensagem" placeholder="Escreva aqui o seu comentário..." rows="5" cols="50"></textarea>
+        </div>
+
+        <br><button id="enviar">Postar</button><br>
+        <div id="mensagens-container"></div>
+    </section>
+    <button id="logout">Sair</button>
+    <script src="/js/script3.js"></script>
+</body>
+
+</html>

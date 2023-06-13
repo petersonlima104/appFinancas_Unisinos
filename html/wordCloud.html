@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Word Clouddy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #wordInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #wordCloud {
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Word Clouddy</h1>
+    <textarea id="wordInput" placeholder="Insira as palavras aqui" rows="5" cols="50"></textarea>
+    <button onclick="generateWordCloud()">Gerar Nuvem de Palavras</button>
+    <div id="wordCloud"></div>
+  </div>
+
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+  <script>
+    function generateWordCloud() {
+      var words = document.getElementById("wordInput").value.split(" ");
+      var wordCount = {};
+
+      // Contagem de palavras
+      for (var i = 0; i < words.length; i++) {
+        var word = words[i].toLowerCase();
+        if (wordCount[word]) {
+          wordCount[word]++;
+        } else {
+          wordCount[word] = 1;
+        }
+      }
+
+      // Criação da nuvem de palavras
+      var wordEntries = Object.entries(wordCount);
+      var layout = d3.layout.cloud().size([500, 500])
+        .words(wordEntries.map(function(d) {
+          return {text: d[0], size: d[1]};
+        }))
+        .padding(5)
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .font("Impact")
+        .fontSize(function(d) { return d.size * 10; })
+        .on("end", draw);
+
+      layout.start();
+
+      function draw(words) {
+        d3.select("#wordCloud").append("svg")
+          .attr("width", layout.size()[0])
+          .attr("height", layout.size()[1])
+          .append("g")
+          .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+          .selectAll("text")
+          .data(words)
+          .enter().append("text")
+          .style("font-size", function(d) { return d.size + "px"; })
+          .style("font-family", "Impact")
+          .style("fill", function(_, i) { return d3.schemeCategory10[i % 10]; })
+          .attr("text-anchor", "middle")
+          .attr("transform", function(d) {
+            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+          })
+          .text(function(d) { return d.text; });
+      }
+    }
+  </script>
+</body>
+</html>
